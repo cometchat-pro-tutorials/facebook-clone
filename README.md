@@ -28,7 +28,7 @@ To run the demo follow these steps:
 4. From the Quick Start copy the **APP_ID, APP_REGION and AUTH_KEY**. These will be used later.
 5. Also copy the **REST_API_KEY** from the API & Auth Key tab.
 6. Navigate to the Users tab, and delete all the default users and groups leaving it clean **(very important)**.
-7. Download the repository [here](https://github.com/hieptl/facebook-clone/archive/master.zip) or by running `git clone https://github.com/hieptl/facebook-clone.git` and open it in a code editor.
+7. Download the repository [here](https://github.com/hieptl/facebook-clone/archive/main.zip) or by running `git clone https://github.com/hieptl/facebook-clone.git` and open it in a code editor.
 8. [Head to Firebase and create a new project](https://console.firebase.google.com)
 9. Create a file called **.env.local** in the root folder of your project.
 10. Import and inject your secret keys in the **.env.local** file containing your CometChat and Firebase in this manner.
@@ -66,4 +66,4 @@ Questions about running the demo? [Open an issue](https://github.com/hieptl/face
 - 👾 [GitHub](https://www.github.com/cometchat-pro)
 - 🔥 [Firebase](https://console.firebase.google.com)
 - 🔷 [VueJs](https://vuejs.org/)
-- ✨ [Live Demo](https://facebook-clone-dff86.web.app/)
+- ✨ [Live Demo]()
