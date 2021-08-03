@@ -65,5 +65,5 @@ Questions about running the demo? [Open an issue](https://github.com/hieptl/face
 - 📚 [Documentation](https://prodocs.cometchat.com)
 - 👾 [GitHub](https://www.github.com/cometchat-pro)
 - 🔥 [Firebase](https://console.firebase.google.com)
-- 🔷 [VueJs](https://vuejs.org/)
+- 🔷 [Next.js](https://nextjs.org/)
 - ✨ [Live Demo](https://vercel-facebook-clone.vercel.app)
