@@ -129,20 +129,24 @@ function Groups(props) {
           <div className="groups__list-container">
             {
               <table className="groups__list-table">
-                <tr>
-                  <th>Icon</th>
-                  <th>Name</th>
-                  <th>Type</th>
-                  <th>Action</th>
-                </tr>
-                {groups.map(group => (
+                <thead>
                   <tr>
-                    <td className="groups__image"><img src={group.icon} /></td>
-                    <td><p className="groups__name">{group.name}</p></td>
-                    <td><p className="groups__type">{group.type}</p></td>
-                    <td>{group.hasJoined ? <span className="groups__status">Joined</span> : <button className="groups__item-button" onClick={() => joinGroup(group)}>Join Group</button>}</td>
+                    <th>Icon</th>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Action</th>
                   </tr>
-                ))}
+                </thead>
+                <tbody>
+                  {groups.map(group => (
+                    <tr role="row" key={group.guid}>
+                      <td className="groups__image"><img src={group.icon} /></td>
+                      <td><p className="groups__name">{group.name}</p></td>
+                      <td><p className="groups__type">{group.type}</p></td>
+                      <td>{group.hasJoined ? <span className="groups__status">Joined</span> : <button className="groups__item-button" onClick={() => joinGroup(group)}>Join Group</button>}</td>
+                    </tr>
+                  ))}
+                </tbody>
               </table>
             }
           </div>

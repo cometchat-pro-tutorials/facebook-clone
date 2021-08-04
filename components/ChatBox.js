@@ -55,7 +55,6 @@ function ChatBox() {
    * get messages.
    */
   const getMessages = () => {
-    console.log(selectedContact.id);
     const limit = 50;
     const messageRequestBuilder = new cometChat.MessagesRequestBuilder()
       .setLimit(limit)
@@ -70,7 +69,6 @@ function ChatBox() {
     messagesRequest
       .fetchPrevious()
       .then((messages) => {
-        console.log(messages);
         setMessages(() => messages);
       })
       .catch((error) => {});
