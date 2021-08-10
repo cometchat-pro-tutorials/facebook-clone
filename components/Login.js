@@ -47,14 +47,16 @@ function Login(props) {
             if (val) {
               const keys = Object.keys(val);
               const user = val[keys[0]];
-              // save authenticated user to local storage.
-              localStorage.setItem('auth', JSON.stringify(user));
-              // save authenticated user to context.
-              setUser(user);
               // login cometchat.
               cometChat.login(user.id, `${process.env.NEXT_PUBLIC_COMETCHAT_AUTH_KEY}`).then(
                 User => {
                   // User loged in successfully.
+                  // save authenticated user to local storage.
+                  localStorage.setItem('auth', JSON.stringify(user));
+                  // save authenticated user to context.
+                  setUser(user);
+                  // hide loading.
+                  setIsLoading(false);
                 },
                 error => {
                   // User login failed, check error and take appropriate action.
@@ -63,14 +65,16 @@ function Login(props) {
             }
           });
         })
-        .catch((error) => {
+        .catch((error) => {      
+          // hide loading indicator.
+          setIsLoading(false);
           alert(`Your user's name or password is not correct`);
         });
     } else {
+      // hide loading indicator.
+      setIsLoading(false);
       alert(`Your user's name or password is not correct`);
     }
-    // hide loading indicator.
-    setIsLoading(false);
   };
 
   return (

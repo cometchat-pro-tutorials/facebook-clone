@@ -24,6 +24,7 @@ function Header() {
       // clear authenticated user data from local storage and react context.
       localStorage.removeItem("auth");
       setUser(null);
+      window.location.reload();
     }
   };
 

@@ -18,7 +18,7 @@ function SignUp(props) {
   const passwordRef = useRef(null);
   const confirmPasswordRef = useRef(null);
 
-  const { cometChat } = useContext(Context);
+  const { cometChat, setIsLoading } = useContext(Context);
 
   /**
    * generate random avatar for demo purpose
@@ -72,37 +72,42 @@ function SignUp(props) {
     const confirmPassword = confirmPasswordRef.current.value;
 
     if (isSignupValid({ email, password, confirmPassword })) {
+      // show loading 
+      setIsLoading(true);
       // create new user's uuid.
       const userUuid = uuidv4(); 
       // generate user's avatar.
       const userAvatar = generateAvatar();
-      (userAvatar);
       // call firebase to to register a new account.
       auth.createUserWithEmailAndPassword(email, password).then((userCrendentials) => {
-        // call firebase real time database to insert a new user.
-        realTimeDb.ref(`users/${userUuid}`).set({
-          id: userUuid,
-          email,
-          avatar: userAvatar
-        }).then(() => {
-          alert(`${userCrendentials.user.email} was created successfully! Please sign in with your created account`);
-          // cometchat auth key
-          const authKey = `${process.env.NEXT_PUBLIC_COMETCHAT_AUTH_KEY}`;  
-          // call cometchat service to register a new account.
-          const user = new cometChat.User(userUuid);
-          user.setName(email);
-          user.setAvatar(userAvatar);
+        if (userCrendentials) {
+          // call firebase real time database to insert a new user.
+          realTimeDb.ref(`users/${userUuid}`).set({
+            id: userUuid,
+            email,
+            avatar: userAvatar
+          }).then(() => {
+            alert(`${userCrendentials.user.email} was created successfully! Please sign in with your created account`);
+            // cometchat auth key
+            const authKey = `${process.env.NEXT_PUBLIC_COMETCHAT_AUTH_KEY}`;  
+            // call cometchat service to register a new account.
+            const user = new cometChat.User(userUuid);
+            user.setName(email);
+            user.setAvatar(userAvatar);
 
-          cometChat.createUser(user, authKey).then(
-            user => {
-            },error => {
-            }
-          )
-          // close sign up dialog.
-          toggleModal(false);
-        });
+            cometChat.createUser(user, authKey).then(
+              user => {
+                setIsLoading(false);
+              },error => {
+              }
+            )
+            // close sign up dialog.
+            toggleModal(false);
+          });
+        }
       }).catch((error) => {
-        alert('Cannot create your account, please try again!');
+        setIsLoading(false);
+        alert(`Cannot create your account, ${email} might be existed, please try again!`);
       }); 
     }
   };

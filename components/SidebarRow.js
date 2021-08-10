@@ -1,6 +1,13 @@
 function SidebarRow({ src, title, toggleModal }) {
+  
+  const showHideModal = () => {
+    if (toggleModal) {
+      toggleModal(true);
+    }
+  }
+
   return (
-    <div className="sidebar__row" onClick={() => toggleModal(true)}>
+    <div className="sidebar__row" onClick={showHideModal}>
       {src && (
         <img src={src} className="sidebar__imgrow" />
       )}
