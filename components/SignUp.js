@@ -33,7 +33,7 @@ function SignUp(props) {
       'https://data-us.cometchat.io/assets/images/avatars/spiderman.png',
       'https://data-us.cometchat.io/assets/images/avatars/wolverine.png'
     ];
-    const avatarPosition = Math.ceil(Math.random() * 5);
+    const avatarPosition = Math.floor(Math.random() * avatars.length);
     return avatars[avatarPosition];
   }
 
