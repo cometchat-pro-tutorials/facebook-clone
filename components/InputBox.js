@@ -18,6 +18,15 @@ function InputBox() {
   // get shared data from React context.
   const { user, setIsLoading, wallPosts, setWallPosts } = useContext(Context);
 
+  const updateWallPosts = (post) => {
+    if (post) {
+      const updatedwallPosts = [...wallPosts, post];
+      setWallPosts(updatedwallPosts.sort((a,b) => {
+        return new Date(b.timestamp) - new Date(a.timestamp);
+      }));
+    }
+  }
+
   /**
    * send post to Firebase
    * @param {*} e 
@@ -59,7 +68,7 @@ function InputBox() {
                   // update post with the uploaded url.
                   post.imageUrl = url;
                   // set wall posts
-                  setWallPosts([...wallPosts, post]);
+                  updateWallPosts(post);
                   // update the post to real time database.
                   realTimeDb.ref(`posts/${postUuid}`).set(post);
                   // hide loading indicator.
@@ -68,8 +77,8 @@ function InputBox() {
             }
           );
         } else {
-          // set wall posts
-          setWallPosts([...wallPosts, post]);
+         // set wall posts
+         updateWallPosts(post);
         }
         // hide loading indicator.
         setIsLoading(false);  

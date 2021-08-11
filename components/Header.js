@@ -9,11 +9,11 @@ import HeaderIcon from "./HeaderIcon";
 import HeaderRightIcon from "./HeaderRightIcon";
 
 function Header() {
+  // search results state.
   const [searchResults, setSearchResults] = useState([]);
-
   // get shared data from react context.
-  const { user, setUser, setIsLoading } = useContext(Context);
-
+  const { user, setUser, setIsLoading, setIsChatLayoutShown, setSelectedContact } = useContext(Context);
+  // create search ref to get value from the search box.
   const searchRef = useRef(null);
 
   /**
@@ -133,11 +133,21 @@ function Header() {
       });
   }
 
+  const showChatUI = () => {
+    setIsChatLayoutShown(true);
+  };
+
+  const hideChatUI = () => {
+    setIsChatLayoutShown(false);
+    setSelectedContact(null);
+  }
+
   return (
     <header className="header">
       {/* Left */}
       <div className="header__left">
         <svg
+          onClick={hideChatUI}
           viewBox="0 0 36 36"
           className="a8c37x1j ms05siws hwsy1cff b7h9ocf4"
           fill="url(#jsc_c_3)"
@@ -218,6 +228,7 @@ function Header() {
       <div className="header__center">
         <div className="header__iccontainer">
           <HeaderIcon
+            onClick={hideChatUI}
             active
             icon={
               <svg
@@ -313,6 +324,7 @@ function Header() {
           }
         />
         <HeaderRightIcon
+          onClick={showChatUI}
           icon={
             <svg
               viewBox="0 0 28 28"

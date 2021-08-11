@@ -11,6 +11,8 @@ import Contact from "../components/Contact";
 import Login from "../components/Login";
 import Loading from "../components/Loading";
 import ChatBox from "../components/ChatBox";
+import ChatLayout from "../components/ChatLayout";
+import RightSidebar from '../components/RightSidebar';
 // import realtime database to interact with Firebase.
 import { realTimeDb } from "../firebase";
 
@@ -27,6 +29,8 @@ export default function Home({ posts }) {
   const [wallPosts, setWallPosts] = useState([]);
   // selected user / group.
   const [selectedContact, setSelectedContact] = useState(null);
+  // check chat layout should be shown, or not.
+  const [isChatLayoutShown, setIsChatLayoutShown] = useState(false);
 
   useEffect(() => {
     // init cometchat pro.
@@ -78,9 +82,35 @@ export default function Home({ posts }) {
     );
   };
 
+  // if user has logged in and isChatLayout = true, chat layout will be shown.
+  if (user && isChatLayoutShown) {
+    return (
+      <Context.Provider value={{isLoading, setIsLoading, user, setUser, cometChat, wallPosts, setWallPosts, selectedContact, setSelectedContact, isChatLayoutShown, setIsChatLayoutShown}}>
+        <div className="index">
+          <Head>
+            <title>Facebook</title>
+          </Head>
+          <Header />
+          <main className="chat__layout-main bg-white">
+              <div className="chat__layout-contact">
+                <Contact />
+              </div>
+              <div className="chat__layout">
+                <ChatLayout />
+              </div>
+              <div className="chat__layout-rightsidebar">
+                <RightSidebar />
+              </div>
+              {isLoading && <Loading />}
+          </main>
+        </div>
+      </Context.Provider>
+    )
+  }
+
   // if there is authenticated user, home page will be shown.
   return (
-    <Context.Provider value={{isLoading, setIsLoading, user, setUser, cometChat, wallPosts, setWallPosts, selectedContact, setSelectedContact}}>
+    <Context.Provider value={{isLoading, setIsLoading, user, setUser, cometChat, wallPosts, setWallPosts, selectedContact, setSelectedContact, isChatLayoutShown, setIsChatLayoutShown}}>
       <div className="index">
         <Head>
           <title>Facebook</title>
@@ -115,6 +145,10 @@ export async function getServerSideProps() {
   }
   // pass posts to Home component as props.
   return {
-    props: { posts: docs },
+    props: {
+      posts: docs.sort((a,b) => {
+        return new Date(b.timestamp) - new Date(a.timestamp);
+      })
+    },
   };
 }

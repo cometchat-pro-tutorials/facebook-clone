@@ -6,7 +6,7 @@ import Context from "../Context";
 function Contact() {
   const [contacts, setContacts] = useState([]);
 
-  const { user, cometChat, setSelectedContact } = useContext(Context);
+  const { user, cometChat, setSelectedContact, isChatLayoutShown } = useContext(Context);
 
   useEffect(() => {
     // get list of contacts.
@@ -74,9 +74,9 @@ function Contact() {
   };
 
   return (
-    <div className="contact">
+    <div className={`contact ${isChatLayoutShown ? 'w-100' : ''}`}>
       <div className="contact__container">
-        <div className="contact__title">
+        <div className={`contact__title ${isChatLayoutShown ? 'pt-half' : ''}`}>
           <span className="contact__name">Contacts</span>
           <div className="contact__icons">
             <i data-visualcompletion="css-img" className="hu5pjgll lzf7d6o1" style={{backgroundImage: 'url("https://static.xx.fbcdn.net/rsrc.php/v3/yw/r/WCd6OGdSzhO.png")', backgroundPosition: '-46px -219px', backgroundSize: 'auto', width: '16px', height: '16px',backgroundRepeat: 'no-repeat', display: 'inline-block'}}></i>

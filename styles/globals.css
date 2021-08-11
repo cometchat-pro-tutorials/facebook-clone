@@ -22,7 +22,6 @@ input {
   height: 100vh;
   margin: 0 auto;
   overflow: hidden;
-  width: 85.735rem;
 }
 
 .main {
@@ -174,7 +173,8 @@ input {
   display: flex;
   flex-grow: 1;
   gap: 1.25rem;
-  padding-left: 6.125rem;
+  justify-content: center;
+  padding-left: 2.5rem;
 }
 
 .header__iccontainer {
@@ -233,6 +233,10 @@ input {
   border-radius: 9999px;
   display: grid;
   padding: 0.5rem;
+}
+
+.header__ricon:hover {
+  cursor: pointer;
 }
 
 .feed {
@@ -1170,4 +1174,128 @@ table, th, td {
 
 .message__content--right {
   background-color: #D1D5DB;
+}
+
+.chat__layout-contact {
+  background: #fff;
+  border-right: 1px solid #E5E7EB;
+  height: 100vh;
+  left: 0;
+  max-width: 37.5rem;
+  min-width: 18.75rem;
+  padding: 0.5rem;
+  position: fixed;
+  width: 25%;
+}
+
+.chat__layout { 
+  height: 100vh;
+  margin-left: 25%;
+  max-width: 49%;
+  overflow-y: auto;
+}
+
+.chat__layout-rightsidebar { 
+  padding-right: 0.75rem;
+  position: fixed;
+  right: 0;
+  top: 3.5rem;
+  width: 26%;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.bg-white {
+  background: #fff;
+}
+
+.rightsidebar { 
+  border-left: 1px solid #E5E7EB;
+  height: 100vh;
+  width: 100%;
+  text-align: center;
+  padding-top: 2rem;
+}
+
+.rightsidebar img { 
+  height: 5rem;
+  width: 5rem;
+}
+
+.rightsidebar p {
+  color: #000;
+  font-weight: 600;
+  padding: 0.75rem 0;
+}
+
+.chatbox__big {
+  background: white;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
+  bottom: 0;
+  height: 100%;
+}
+
+.chatbox__title-big {
+  background: white;
+  border-bottom: 1px solid #E5E7EB;
+  display: grid;
+  grid-template-columns: auto max-content;
+  left: 25.1%;
+  padding: 0.75rem;
+  position: fixed;
+  right: 25.7%;
+}
+
+.chatbox__input-big {
+  align-items: center;
+  background: white;
+  bottom: 0;
+  display: grid;
+  grid-gap: 0.5rem;
+  grid-template-columns: 1fr max-content;
+  left: 25.1%;
+  padding-bottom: 0;
+  padding-left: 0;
+  padding: 0.75rem;
+  padding: 0.75rem;
+  position: fixed;
+  right: 26%;
+}
+
+.pt-8 {
+  padding-top: 8rem;
+}
+
+.pt-3 {
+  padding-top: 3rem;
+}
+
+.pb-5 {
+  padding-bottom: 5rem;
+}
+
+.pb-11 {
+  padding-bottom: 11rem;
+}
+
+.pt-5 {
+  padding-top: 5rem;
+}
+
+.pt-half {
+  padding-top: 0.5rem;
+}
+
+.chatbox__input-big input {
+  background: #F3F4F6;
+  border-radius: 9999px;
+  color: #6B7280;
+  font-size: 0.9375rem;
+  margin-left: 0.5rem;
+  outline: none;
+  padding: 0.65rem 0.25rem 0.65rem 1.25rem;
+  padding-left: 1.25rem;
 }
